@@ -1,13 +1,15 @@
 package com.daggersample.app
 
 import android.app.Application
-import com.daggersample.app.di.AppComponent
 import com.daggersample.app.di.DaggerAppComponent
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
-class App : Application() {
+class App : Application(), HasAndroidInjector {
 
-    lateinit var component: AppComponent
-        private set
+    @Inject
+    lateinit var injector: DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()
@@ -15,10 +17,13 @@ class App : Application() {
     }
 
     private fun configureDagger() {
-        component = DaggerAppComponent.factory()
+        val component = DaggerAppComponent.factory()
             .create(
                 context = this,
                 baseUrl = "https://localhost.com"
             )
+        component.inject(this)
     }
+
+    override fun androidInjector() = injector
 }

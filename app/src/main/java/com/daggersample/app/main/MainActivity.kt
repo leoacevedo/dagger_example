@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.daggersample.app.App
 import com.daggersample.app.R
 import com.daggersample.lib.Preferences
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity(), MainView {
     lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as App).component.inject(this)
+        AndroidInjection.inject(this)
 
         super.onCreate(savedInstanceState)
         presenter = MainPresenter(this, MainModel(preferences, baseUrl))
