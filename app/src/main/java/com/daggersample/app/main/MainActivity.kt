@@ -1,11 +1,12 @@
 package com.daggersample.app.main
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
 import com.daggersample.app.App
 import com.daggersample.app.R
 import com.daggersample.lib.Preferences
+import com.daggersample.lib.other.OtherActivity
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -39,9 +40,12 @@ class MainActivity : AppCompatActivity(), MainView {
         message.text = getString(R.string.this_is_the_base_url, baseUrl)
     }
 
-    override fun enableSwitch() {
+    override fun enableEvents() {
         darkModeSw.setOnCheckedChangeListener { _, checked ->
             presenter.onDarkModeChanged(checked)
+        }
+        navigateAwayBtn.setOnClickListener {
+            presenter.onNavigateAway()
         }
     }
 
@@ -55,5 +59,9 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun redraw() {
         recreate()
+    }
+
+    override fun navigateAway() {
+        startActivity(Intent(this, OtherActivity::class.java))
     }
 }

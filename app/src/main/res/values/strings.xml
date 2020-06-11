@@ -2,4 +2,5 @@
     <string name="app_name">Dagger Sample</string>
     <string name="dark_mode">Dark mode</string>
     <string name="this_is_the_base_url">This is the base URL: %s</string>
+    <string name="next_screen">Next screen</string>
 </resources>

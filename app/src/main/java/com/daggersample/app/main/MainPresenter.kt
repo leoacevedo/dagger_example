@@ -6,7 +6,7 @@ class MainPresenter(private val view: MainView, private val model: MainModel) {
             setDarkMode(model.darkMode)
             draw()
             turnSwitchOn(model.darkMode)
-            enableSwitch()
+            enableEvents()
             setUrlMessage(model.baseUrl)
         }
     }
@@ -15,5 +15,9 @@ class MainPresenter(private val view: MainView, private val model: MainModel) {
         model.darkMode = darkMode
         view.setDarkMode(darkMode)
         view.redraw()
+    }
+
+    fun onNavigateAway() {
+        view.navigateAway()
     }
 }
