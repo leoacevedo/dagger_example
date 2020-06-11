@@ -13,7 +13,7 @@ class MainModel(private val preferences: Preferences, val baseUrl: String) {
             }
         }
 
-    private companion object {
+    companion object {
         const val PREF_THEME = "theme"
         const val THEME_DARK = "dark"
         const val THEME_LIGHT = "light"

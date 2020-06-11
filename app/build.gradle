@@ -34,4 +34,7 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:${daggerVersion}"
     kapt "com.google.dagger:dagger-compiler:${daggerVersion}"
     kapt "com.google.dagger:dagger-android-processor:${daggerVersion}"
+
+    testImplementation "junit:junit:4.13"
+    testImplementation "io.mockk:mockk:1.9.3"
 }

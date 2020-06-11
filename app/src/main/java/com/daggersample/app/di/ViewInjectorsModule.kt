@@ -10,4 +10,4 @@ abstract class ViewInjectorsModule {
     @ContributesAndroidInjector
     abstract fun contributeMainActivityInjector(): MainActivity
 }
-    
+
