@@ -2,7 +2,7 @@ package com.daggersample.app.main
 
 import com.daggersample.lib.Preferences
 
-class MainModel(private val preferences: Preferences, val baseUrl: String) {
+class MainModel(private val preferences: Preferences) {
     var darkMode: Boolean
         get() = preferences[PREF_THEME] == THEME_DARK
         set(value) {

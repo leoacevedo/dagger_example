@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.daggersample.app.R
+import com.daggersample.app.main.useless_fragment.TextFragment
 import com.daggersample.lib.Preferences
 import com.daggersample.lib.other.OtherActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -12,8 +13,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainView {
-    @Inject
-    lateinit var baseUrl: String
 
     @Inject
     lateinit var preferences: Preferences
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = MainPresenter(this, MainModel(preferences, baseUrl))
+        presenter = MainPresenter(this, MainModel(preferences))
     }
 
     override fun setDarkMode(darkMode: Boolean) {
@@ -32,10 +31,6 @@ class MainActivity : AppCompatActivity(), MainView {
             R.style.ThemeOverlay_AppCompat_Light
         }
         setTheme(theme)
-    }
-
-    override fun setUrlMessage(url: String) {
-        message.text = getString(R.string.this_is_the_base_url, baseUrl)
     }
 
     override fun enableEvents() {
@@ -53,6 +48,13 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun draw() {
         setContentView(R.layout.activity_main)
+        with (supportFragmentManager) {
+            if (findFragmentById(R.id.fragment) == null) {
+                beginTransaction()
+                    .add(R.id.fragment, TextFragment())
+                    .commit()
+            }
+        }
     }
 
     override fun redraw() {

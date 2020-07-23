@@ -7,7 +7,6 @@ class MainPresenter(private val view: MainView, private val model: MainModel) {
             draw()
             turnSwitchOn(model.darkMode)
             enableEvents()
-            setUrlMessage(model.baseUrl)
         }
     }
 
