@@ -3,14 +3,14 @@ package com.daggersample.app.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.daggersample.app.App
 import com.daggersample.app.R
 import com.daggersample.lib.Preferences
 import com.daggersample.lib.other.OtherActivity
-import dagger.android.AndroidInjection
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainView {
     @Inject
     lateinit var baseUrl: String
@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity(), MainView {
     lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
         presenter = MainPresenter(this, MainModel(preferences, baseUrl))
     }
